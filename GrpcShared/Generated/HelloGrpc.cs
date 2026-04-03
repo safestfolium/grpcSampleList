@@ -14,10 +14,10 @@ namespace GrpcShared.Generated
             "SayHello",
             new Marshaller<HelloRequest>(
                 request => request.ToByteArray(),
-                bytes => HelloRequest.Parser.ParseFrom(bytes)),
+                bytes => HelloRequest.ParseFrom(bytes)),
             new Marshaller<HelloReply>(
                 reply => reply.ToByteArray(),
-                bytes => HelloReply.Parser.ParseFrom(bytes)));
+                bytes => HelloReply.ParseFrom(bytes)));
 
         public abstract class GreeterBase
         {
