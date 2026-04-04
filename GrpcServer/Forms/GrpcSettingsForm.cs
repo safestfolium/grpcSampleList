@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using System.Windows.Forms;
 using GrpcShared;
 
@@ -34,6 +33,7 @@ namespace GrpcServer.Forms
         {
             bool whitelistActive = rbWhitelistOn.Checked;
             listBoxClients.Enabled = whitelistActive;
+            txtIpAddress.Enabled = whitelistActive;
             btnAdd.Enabled = whitelistActive;
             btnRemove.Enabled = whitelistActive && listBoxClients.SelectedIndex >= 0;
         }
@@ -55,18 +55,17 @@ namespace GrpcServer.Forms
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            using (AddClientDialog dlg = new AddClientDialog())
+            string ip = txtIpAddress.Text.Trim();
+            if (string.IsNullOrEmpty(ip))
             {
-                if (dlg.ShowDialog(this) == DialogResult.OK)
-                {
-                    string ip = dlg.SelectedIp;
-                    if (!string.IsNullOrEmpty(ip))
-                    {
-                        WhitelistStore.AddAllowedClient(ip);
-                        RefreshClientList();
-                    }
-                }
+                MessageBox.Show("Please enter an IP address.", "Input Required",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
             }
+            WhitelistStore.AddAllowedClient(ip);
+            RefreshClientList();
+            txtIpAddress.Clear();
+            txtIpAddress.Focus();
         }
 
         private void btnRemove_Click(object sender, EventArgs e)
