@@ -1,17 +1,22 @@
-# NuGet
-.nuget/nuget.exe
-*.nupkg
-packages/
-
-# Build output
+# Build outputs
 bin/
 obj/
-
-# Visual Studio
-.vs/
 *.user
 *.suo
+.vs/
 
-# Windows
+# NuGet packages (restored at build time)
+packages/
+*.nupkg
+.nuget/
+.nuget/nuget.exe
+
+# Binaries
+*.exe
+*.dll
+*.pdb
+
+# OS/IDE
+.DS_Store
 Thumbs.db
 Desktop.ini
