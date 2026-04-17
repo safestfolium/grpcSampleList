@@ -9,6 +9,7 @@ obj/
 packages/
 *.nupkg
 .nuget/
+.nuget/nuget.exe
 
 # Binaries
 *.exe
@@ -18,3 +19,4 @@ packages/
 # OS/IDE
 .DS_Store
 Thumbs.db
+Desktop.ini
